@@ -48,7 +48,7 @@
                                        <td width="200">
                                         <form method="post" action="VerTransf">
                                             <input type="text" name="transferencias" style=" display:none;" value=" ">
-                                            <button type="submit" class="btn btn-default"><img  src="/assets/images/dinero.png" style=" width: 50px; height: 50px;"></button>
+                                            <button type="submit" class="btn btn-default"><img  src="/assets/images/booking3.png" style=" width: 70px; height: 70px;"></button>
                                         </form>
                                     </td>
                                 </tr>
