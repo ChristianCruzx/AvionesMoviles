@@ -1,9 +1,6 @@
 
-
 <!DOCTYPE html>
 <link rel="stylesheet" href="datepicker.min.css">
-
- 
 
 <link href="/assets/vendorRegistrer/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 <link href="/assets/vendorRegistrer/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -150,54 +147,7 @@
    
 </div>
 <script language="javascript" type="text/javascript">
-     var webSocket;
-     var messages = document.getElementById("messages");
-
-
-     $(test);
-     function test(){
-      $("#Registerbtn").on("click", openSocket());  
-
-     }
-
-     function alert(){
-
-             
-     }
-
-       function openSocket(){
-
-                // Ensures only one connection is open at a time
-                if(webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED){
-                   writeResponse("WebSocket is already opened.");
-                    return;
-                }
-                
-                // Create a new instance of the websocket
-                webSocket = new WebSocket("ws://localhost:8080/echo");
-                 
-                /**
-                 * Binds functions to the listeners for the websocket.
-                 */
-                webSocket.onopen = function(event){
-                    // For reasons I can't determine, onopen gets called twice
-                    // and the first time event.data is undefined.
-                    // Leave a comment if you know the answer.
-                    if(event.data === undefined)
-                        return;
- 
-                    writeResponse(event.data);
-                };
- 
-                webSocket.onmessage = function(event){
-                    writeResponse(event.data);
-                };
- 
-                webSocket.onclose = function(event){
-                    writeResponse("Connection closed");
-                };
-            }
-
+    
 
 
 </script>

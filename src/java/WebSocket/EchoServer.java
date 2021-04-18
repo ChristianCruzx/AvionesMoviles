@@ -5,10 +5,10 @@
  */
 package WebSocket;
 
+import Entities.Usuario;
 import Entities.Vuelo;
 import Models.ModelT;
 import com.google.gson.Gson;
-import controllers.CustomConfigurator;
 import java.io.FileOutputStream;
 /**
  *
@@ -52,17 +52,16 @@ public class EchoServer {
     }
 
     
-    
     @OnOpen
     public void onOpen(Session session,  EndpointConfig config){
         
-        
+      
         System.out.println(session.getId() + " has opened a connection"); 
-        try {
-            session.getBasicRemote().sendText("Connection Established");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+////            session.getBasicRemote().sendText("Connection Established");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
     }
  
     /**
@@ -72,26 +71,30 @@ public class EchoServer {
     @OnMessage
     public void onMessage(String message, Session session){
         
-       System.out.println("Message from " + session + ": " + message);
-       
-       
-       
-        String json="";
-       
-        //create new Onbject 
-         Vuelo v1= (Vuelo) Models.ModelT.instance().getVuelosList().get(1);
-         //Serialization
+        //Deserealizacion 
         Gson gson= new Gson();
-        json= gson.toJson(v1);
-        
-      
-
+        Usuario user = gson.fromJson(message, Usuario.class); 
+        user.setRole(1);
+       
+       System.out.println(user);
+       
+       // compobar en la base de datos
+        // true ejcuttar esto
+       //Saving 
+       this.httpSession.setAttribute("User", user);
+        //create new Onbject 
         try {
-            
-            session.getBasicRemote().sendText(json);
+            session.getBasicRemote().sendText("success");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
+        // si no
+//        try {
+//            session.getBasicRemote().sendText("fail");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
     }
  
     /**
