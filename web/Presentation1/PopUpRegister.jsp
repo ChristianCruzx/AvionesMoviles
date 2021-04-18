@@ -147,11 +147,64 @@
    
 </div>
 <script language="javascript" type="text/javascript">
-    
+    var webSocket;
+    function openSocket() {
+        // Ensures only one connection is open at a time
+        if (webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED) {
+            console.log("connnection ready");
+            return;
+        }
+        // Create a new instance of the websocket
+        webSocket = new WebSocket("ws://localhost:8080/echo/register");
 
+        /**
+         * Binds functions to the listeners for the websocket.
+         */
+        webSocket.onopen = function (event) {
+            // For reasons I can't determine, onopen gets called twice
+            // and the first time event.data is undefined.
+            // Leave a comment if you know the answer.
+            if (event.data === undefined)
+                return;
 
+        };
+
+        webSocket.onmessage = function (event) {
+            if(event.data!=="")
+            confirmarLogin(event.data);
+            //writeResponse(event.data);
+        };
+
+        webSocket.onclose = function (event) {
+            //writeResponse("Connection closed");
+        };
+    }
+
+    function send() {
+
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        user = {
+            "correo": email,
+            "password": password
+        };
+        webSocket.send(JSON.stringify(user));
+    }
+
+    function closeSocket() {
+        webSocket.close();
+        console.log("close socked");
+    }
+
+    function confirmarLogin(verificar) {
+        if (verificar === "success") {
+            closeSocket();
+            window.alert("Hola, Ha iniciado Sesion exitosamente");
+       
+           
+            window.location.reload();
+        }  if (verificar === "fail") {
+            window.alert("Usuario no existe o error");
+        }
+    }
 </script>
-
-
-     
-

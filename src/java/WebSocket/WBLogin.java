@@ -74,16 +74,13 @@ public class WBLogin {
      */
     @OnMessage
     public void onMessage(String message, Session session,@PathParam("parameter1") String parameter1){
-        
         if("login".equals(parameter1)){
             this.login(message, session);
-
-}
-        
+         }       
          if("register".equals(parameter1)){
              this.register(message, session);
 
-}
+         }
         
         
     }
