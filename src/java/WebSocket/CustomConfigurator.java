@@ -5,7 +5,7 @@
  */
 package WebSocket;
 
-import WebSocket.EchoServer;
+import WebSocket.WBLogin;
 import java.text.MessageFormat;
 import javax.servlet.http.HttpSession;
 import javax.websocket.HandshakeResponse;
@@ -33,15 +33,17 @@ public class CustomConfigurator extends ServerEndpointConfig.Configurator
 
 
           // cambiar echoServer por el nombre de clase de su websocket
-        if (endpoint instanceof EchoServer) {
+        if (endpoint instanceof WBLogin) {
             // The injection point:
-            ((EchoServer) endpoint).setHttpSession(httpSession);
+            ((WBLogin) endpoint).setHttpSession(httpSession);
         }
         else {
             throw new InstantiationException(
                     MessageFormat.format("Expected instanceof \"{0}\". Got instanceof \"{1}\".",
-                    EchoServer.class, endpoint.getClass()));
+                    WBLogin.class, endpoint.getClass()));
         }
+        
+        
 
         return endpoint;
     }

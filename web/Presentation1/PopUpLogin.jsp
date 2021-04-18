@@ -75,7 +75,7 @@
             return;
         }
         // Create a new instance of the websocket
-        webSocket = new WebSocket("ws://localhost:8080/echo");
+        webSocket = new WebSocket("ws://localhost:8080/echo/login");
 
         /**
          * Binds functions to the listeners for the websocket.
@@ -120,7 +120,7 @@
         if (verificar === "success") {
             closeSocket();
             window.alert("Hola, Ha iniciado Sesion exitosamente");
-            //$('#loginUser').modal('hide');
+       
            
             window.location.reload();
         }  if (verificar === "fail") {
