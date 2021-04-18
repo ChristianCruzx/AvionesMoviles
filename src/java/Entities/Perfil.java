@@ -7,13 +7,14 @@ package Entities;
  */
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Chris
  */
-public class Perfil {
+public class Perfil implements Serializable {
     
     private String id_perfil;
     private String nombre;

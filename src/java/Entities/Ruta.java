@@ -5,11 +5,13 @@
  */
 package Entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
  */
-public class Ruta {
+public class Ruta implements Serializable {
     
     private String id_ruta;
     private String origen;

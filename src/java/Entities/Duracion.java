@@ -5,11 +5,13 @@
  */
 package Entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
  */
-public class Duracion {
+public class Duracion implements Serializable {
     
    private String hora;
    private String minutos;

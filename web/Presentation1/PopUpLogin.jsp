@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        
     </head>
     <body>
 
@@ -27,23 +27,23 @@
 
                     <div class="modal-footer ">
                         <div class="login100-form validate-form p-b-33 p-t-5">
-                            <form method="post" action="Login">
+                            
                                 <div class="wrap-input100 validate-input" data-validate = "Enter email">
-                                    <input class="input100" type="text" name="email" placeholder="Email">
+                                    <input class="input100" type="text" name="email" id="email" placeholder="Email">
                                     <span class="focus-input100" data-placeholder="&#xe82a;"></span>
                                 </div>
 
                                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                                    <input class="input100" type="password" name="password" placeholder="Password">
+                                    <input class="input100" type="password" id="password" name="password" placeholder="Password">
                                     <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                                 </div>
 
                                 <div class="container-login100-form-btn m-t-32">
-                                    <button class="login100-form-btn">
+                                    <button class="login100-form-btn" id="login-btn" onclick="send();">
                                         Login
                                     </button>
                                 </div>
-                            </form>
+                        
                         </div>
 
                     </div>  
@@ -61,3 +61,32 @@
 
     </body>
 </html>
+
+
+
+<script language="javascript" type="text/javascript">
+     var webSocket;
+   
+              /**
+             * Sends the value of the text input to the server
+             */
+            function send(){
+                var email = document.getElementById("email").value;
+                var password=document.getElementById("password").value;
+               user={
+                    "correo": email,
+                    "password":password   
+                };
+                webSocket.send(JSON.stringify(user));
+            }
+           
+            function closeSocket(){
+                webSocket.close();
+            }
+ 
+            function writeResponse(text){
+                messages.innerHTML += "<br/>" + text;
+            }
+           
+</script>
+

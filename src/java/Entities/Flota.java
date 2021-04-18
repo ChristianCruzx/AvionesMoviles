@@ -5,13 +5,15 @@
  */
 package Entities;
 
+import java.io.Serializable;
+
 
 
 /**
  *
  * @author Chris
  */
-public class Flota {
+public class Flota implements Serializable {
     
     private String id_vuelo_fl;
     private Ruta ruta;

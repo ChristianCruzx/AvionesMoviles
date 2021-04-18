@@ -7,7 +7,9 @@ Author     : Chris
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<html>
+<html>      
+          
+            
             <%@include file="/Presentation1/PopUpRegister.jsp"%>
             <%@include file="/Presentation1/PopUpLogin.jsp"%>
 
@@ -24,10 +26,14 @@ Author     : Chris
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                        
                         <a class="dropdown-item" data-toggle="modal"   type="button" data-target="#registrarUser" href="/Presentation1/RegisterUser.jsp">Registro</a>
-                          <a class="dropdown-item" data-toggle="modal"   type="button" data-target="#loginUser" href="/Presentation1/RegisterUser.jsp">Login</a>
+                          
+                        
+                          
+                            <button class="dropdown-item" data-toggle="modal"type="button" data-target="#loginUser" onclick="openSocket();" id="login-btn">login</button>
+                          
 
                         <a class="dropdown-item" href="/Presentation1/Login.jsp">Acceder a Micuenta</a>
-                        <a class="dropdown-item" href="/Presentation1/BuscarVuelos.jsp">Buscar Vuelos</a>
+                        <a class="dropdown-item" href="/buscarVuelos">Buscar Vuelos</a>
 
                     </div>
                 </li>
@@ -59,3 +65,18 @@ Author     : Chris
 
 
 </html>
+
+
+    
+    
+  
+<script language="javascript" type="text/javascript">
+    $(test);
+     function test(){
+      $("#login-btn").on("click", openSocket());  
+      
+     }
+</script>
+
+          
+

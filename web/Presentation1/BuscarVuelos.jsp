@@ -1,5 +1,9 @@
 
 
+<%@page import="Entities.Vuelo"%>
+<%@page import="Models.ModelT"%>
+<%@page import="Models.Model"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +15,9 @@
 
     </head>
     <%@include file="/Presentation1/header.jsp"%>
+    <%  ArrayList<Vuelo> listaVuelos =  (ArrayList<Vuelo>)session.getAttribute("listaVuelos");%>
+ 
+
     <body>
         <div class="limiter" >
             <div class="container-login100" style="background-image: url('/assets/images/airplane.jpg');">
@@ -18,40 +25,41 @@
                     <span class="login100-form-title p-b-41" style=" color: purple">
                         Aerolinea C&M
                     </span>
-            
-                <div  style="height: available; position: relative; margin-top: 20px;  margin-left: 40px; margin-right: 40px; margin-bottom: 100px; ">     
-                       <h3 style="text-align: center">Buscar Vuelos Disponibles</h3>
+
+                    <div  style="height: available; position: relative; margin-top: 20px;  margin-left: 40px; margin-right: 40px; margin-bottom: 100px; ">     
+                        <h3 style="text-align: center">Buscar Vuelos Disponibles</h3>
                         <table class="table table-bordered table-striped mb-0 " id="example"style="">
                             <thead>
                                 <tr>
-                                    
+                                    <th scope="col">#</th>
                                     <th scope="col">Origen</th>
                                     <th scope="col">Destino</th>
-                                    <th scope="col">Duracion</th>
-                                    <th scope="col">Fecha Ida</th>
-                                    <th scope="col">Fecha Regreso</th>
-                                    <th scope="col">Horario</th>
-                                    <th scope="col">Cantidad Asientos Disponibles</th>
-                                    <th id="colcorta" >Add</th>
+                                    <th scope="col">Fecha Vuelo</th>
+                                    <th scope="col">Asientos Disponibles</th>
+                                    <th id="colcorta">Reservar</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                
+                                   <% int i = 0;
+
+                                        for (Vuelo vuelo : listaVuelos) {
+                                            i++;%>
                                 <tr style="height: 10px">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                              
-                                      <td> </td>
-                                       <td width="200">
-                                        <form method="post" action="VerTransf">
-                                            <input type="text" name="transferencias" style=" display:none;" value=" ">
+                                    <td><%= i%>  </td>
+                                    <td><%= vuelo.getRuta().getOrigen() %>  </td>
+                                    <td><%= vuelo.getRuta().getDestino() %>   </td>
+                                    <td><%= vuelo.getFechaSalida()%> </td>
+
+                                    <td><%= vuelo.getCant_pasajeros() %></td>
+                                    <td width="200">
+                                        <form method="post" action="">
+                                            <input type="text" name="selectFly" style=" display:none;" value="<%= vuelo.getId_vuelo() %> ">
                                             <button type="submit" class="btn btn-default"><img  src="/assets/images/booking3.png" style=" width: 70px; height: 70px;"></button>
                                         </form>
                                     </td>
                                 </tr>
+                                <%}%>
                             </tbody>
                         </table>
                     </div>

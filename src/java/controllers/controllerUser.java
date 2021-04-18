@@ -72,7 +72,7 @@ public class controllerUser extends HttpServlet {
         
         
         //save in session
-        //request.getSession(true).setAttribute("UserSession", userSession);
+        //("UserSession", userSession);
 
 
                 request.getRequestDispatcher("/Presentation1/Principal.jsp").forward(request, response);
@@ -105,9 +105,10 @@ public class controllerUser extends HttpServlet {
 
         System.out.println(profiile.toString());
         System.out.println(user.toString());
+        
 
  
-        request.getRequestDispatcher("/Presentation1/RegisterUser.jsp").forward(request, response);
+        response.sendRedirect(request.getHeader("referer"));
 
     }
 

@@ -5,11 +5,13 @@
  */
 package Entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
  */
-public class Asiento {
+public class Asiento implements Serializable {
      
     private String id_vuelo;
     private int  fila;

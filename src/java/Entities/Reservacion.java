@@ -6,13 +6,14 @@
 package Entities;
 
 import Entities.Vuelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Chris
  */
-public class Reservacion {
+public class Reservacion implements Serializable {
     
     
     

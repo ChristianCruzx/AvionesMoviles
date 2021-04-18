@@ -5,13 +5,14 @@
  */
 package Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Chris
  */
-public class Vuelo {
+public class Vuelo implements Serializable {
     
    private String id_vuelo;
    private Ruta ruta;

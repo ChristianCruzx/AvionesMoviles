@@ -5,11 +5,13 @@
  */
 package Entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
  */
-public class Horario {
+public class Horario implements Serializable {
     
     private String  dia;
     private Duracion duracion;

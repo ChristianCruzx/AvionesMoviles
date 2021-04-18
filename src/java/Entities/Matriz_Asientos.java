@@ -6,12 +6,14 @@
 package Entities;
 
 import Entities.Asiento;
+import java.io.Serializable;
 
 /**
  *
  * @author Chris
  */
-public class Matriz_Asientos {
+
+public class Matriz_Asientos implements Serializable {
     
     private int fila;
     private int columna;

@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
@@ -12,7 +14,7 @@ package Entities;
 
 //nuevos comentarios
 
-public class TipoAvion {
+public class TipoAvion implements Serializable {
     
     private String id_tipoAvion;
     private String annio;

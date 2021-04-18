@@ -5,11 +5,18 @@
  */
 package WebSocket;
 
+import Entities.Vuelo;
 import Models.ModelT;
+import com.google.gson.Gson;
+import controllers.CustomConfigurator;
+import java.io.FileOutputStream;
 /**
  *
  * @author Chris
  */import java.io.IOException;
+import java.io.ObjectOutputStream;
+import javax.servlet.http.HttpSession;
+import javax.websocket.EndpointConfig;
  
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -24,7 +31,7 @@ import javax.websocket.server.ServerEndpoint;
  * "EchoChamber" is the name of the package
  * and "echo" is the address to access this class from the server
  */
-@ServerEndpoint("/echo") 
+@ServerEndpoint(value="/echo", configurator = CustomConfigurator.class) 
 public class EchoServer {
     /**
      * @OnOpen allows us to intercept the creation of a new session.
@@ -32,8 +39,24 @@ public class EchoServer {
      * In the method onOpen, we'll let the user know that the handshake was 
      * successful.
      */
+    
+    
+    private HttpSession httpSession;
+
+    public void setHttpSession(HttpSession httpSession) {
+        if (this.httpSession != null) {
+            throw new IllegalStateException("HttpSession has already been set!");
+        }
+
+        this.httpSession = httpSession;
+    }
+
+    
+    
     @OnOpen
-    public void onOpen(Session session){
+    public void onOpen(Session session,  EndpointConfig config){
+        
+        
         System.out.println(session.getId() + " has opened a connection"); 
         try {
             session.getBasicRemote().sendText("Connection Established");
@@ -49,12 +72,23 @@ public class EchoServer {
     @OnMessage
     public void onMessage(String message, Session session){
         
-    
+       System.out.println("Message from " + session + ": " + message);
+       
+       
+       
+        String json="";
+       
+        //create new Onbject 
+         Vuelo v1= (Vuelo) Models.ModelT.instance().getVuelosList().get(1);
+         //Serialization
+        Gson gson= new Gson();
+        json= gson.toJson(v1);
         
-        System.out.println("Message from " + session.getId() + ": " + message);
+      
+
         try {
             
-            session.getBasicRemote().sendText(message);
+            session.getBasicRemote().sendText(json);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

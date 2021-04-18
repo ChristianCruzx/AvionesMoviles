@@ -5,12 +5,13 @@
  */
 package Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  *
  * @author Chris
  */
-public class Tiquete {
+public class Tiquete  implements Serializable {
     
     private Date fecha;
     private Reservacion reservacion;
