@@ -39,8 +39,11 @@ public class ModelT {
         TipoAvion tp1 = new TipoAvion("2020", "Ryzen 4500u", "Tesla", 4, 3, 12);
 
         Vuelo v1 = new Vuelo(r1, tp1, tp1.getCant_asientos(), d1, "22-04-31");
+        v1.setId_vuelo("1");
+        v1.setPrecio(100);
         Vuelo v2 = new Vuelo(r2, tp1, tp1.getCant_asientos(), d2, "22-04-31");
-
+        v2.setId_vuelo("3");
+        v2.setPrecio(110);
         this.VuelosList.add(v2);
         this.VuelosList.add(v1);
 
