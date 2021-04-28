@@ -36,6 +36,13 @@ public class Horario implements Serializable {
     public void setDuracion(Duracion duracion) {
         this.duracion = duracion;
     }
+
+    @Override
+    public String toString() {
+        return dia + "--"+ duracion.toString();
+    }
+    
+    
     
     
     

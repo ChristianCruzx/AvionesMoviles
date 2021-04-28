@@ -25,15 +25,15 @@ public final class UtilitiesSQL {
 
 
     /*Perfil*/
-    private static final String INSERTAR_PERFIL = "{call prc_insert_Perfil(?,?,?,?,?,?)}";
+    private static final String INSERTAR_PERFIL = "call prc_insert_Perfil(?,?,?,?,?,?)";
 //    private static final String MODIFICAR_PERFIL = "{call prc_update_Perfil(?,?,?,?,?,?)}";
 //    private static final String BUSCAR_PERFIL = "{?=call prc_buscar_Perfil(?)}";
 //    private static final String LISTAR_PERFIL = "{?=call listar_Perfil()}";
      private static final String ELIMINAR_PERFIL = "{call prc_delete_Perfil(?)}";
 
-//    private static Perfil newPerfil(ResultSet rs) throws SQLException {
-//        return new Perfil(rs.getString("nombre"),rs.getString("apellidos"),rs.getString("correloElectronico"),rs.getString("direccion"),rs.getString("telefono"),rs.getString("fechaNacimiento"));
-//    }
+    private static Perfil newPerfil(ResultSet rs) throws SQLException {
+       return new Perfil(rs.getString("nombre"),rs.getString("apellidos"),rs.getString("correoElectronico"),rs.getString("direccion"),rs.getString("telefono"),rs.getString("fechaNacimiento"));
+    }
 //
 //    private static CallabletestStatement searchPerfil(Connection connection, String id) throws SQLException {
 //        CallableStatement cstmt;
@@ -58,7 +58,7 @@ public final class UtilitiesSQL {
         cstmt.setString(3, perfil.getCorreo());
         cstmt.setString(4, perfil.getDireccion());
         cstmt.setString(5, perfil.getTelefono());
-//        cstmt.setString(6, perfil.getFechaNacimiento());
+       cstmt.setString(6, perfil.getFechaNacimiento());
         return cstmt;
     }
 

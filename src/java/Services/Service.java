@@ -25,6 +25,10 @@ public class Service {
     protected CallableStatement cstmt;
     protected PreparedStatement pstmt;
     protected ResultSet resultSet;
+  
+    private final String url = "jdbc:postgresql://localhost:5432/VuelosDB";
+    private final String user = "postgres";
+    private final String  pass= "root";
 
     public Service() {
         connection = null;
@@ -33,24 +37,18 @@ public class Service {
     }
 
     protected void Connect() throws GlobalException, NoDataException {
-        try {
-            //Class.forName("oracle.jdbc.driver.OracleDriver");
-//            String url = "jdbc:postgresql://localhost/VuelosDB";
-//            Properties props = new Properties(); 
-//            props.setProperty("user","fred");
-//            props.setProperty("password","secret");
-//            props.setProperty("ssl","true");
-//            Connection conn = DriverManager.getConnection(url, props);
-            String url = "jdbc:postgresql://localhost/VuelosDB?user=postgres&password=root&ssl=true";
-            connection = DriverManager.getConnection(url);
+       
+       try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(url,  user,  pass);
             resetStatement();
-        } 
-        //catch (ClassNotFoundException e) {
-          //  throw new GlobalException("No se ha localizado el driver");
-        //} 
-        catch (SQLException e) {
+        } catch (ClassNotFoundException e) {
+            throw new GlobalException("No se ha localizado el driver");
+        } catch (SQLException e) {
             throw new NoDataException("La base de datos no se encuentra disponible");
         }
+        
+        
     }
 
     protected void Disconnect() throws SQLException {

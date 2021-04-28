@@ -7,6 +7,8 @@ package controllers;
 
 import Entities.Perfil;
 import Entities.Usuario;
+import Exceptions.GlobalException;
+import Exceptions.NoDataException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -38,7 +40,7 @@ public class controllerUser extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ParseException {
+            throws ServletException, IOException, SQLException, ParseException, GlobalException, NoDataException {
         if (request.getServletPath().equals("/Register")) {
 
             System.out.println("servlet Register");
@@ -83,7 +85,7 @@ public class controllerUser extends HttpServlet {
 
     public void RegisterUser(HttpServletRequest request,
             HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ParseException {
+            throws ServletException, IOException, SQLException, ParseException, GlobalException, NoDataException {
 
         //Variables with info from Frontend      
         String name = request.getParameter("first_name");
@@ -100,10 +102,13 @@ public class controllerUser extends HttpServlet {
         Integer rol = 2; //esto deberia ser in String;
 
          //Create  new objects
-        Perfil profiile = new Perfil(name, lastName, email, adress,phone, new Date());
+        Perfil profile = new Perfil(name, lastName, email, adress,phone, string_dateBirthday);
         Usuario user = new Usuario(email, password, rol, "2");
+        Models.Model.instance().insertar_objeto(Entities.Perfil.class, profile);
+        
+       
 
-        System.out.println(profiile.toString());
+        System.out.println(profile.toString());
         System.out.println(user.toString());
         
 
@@ -130,6 +135,10 @@ public class controllerUser extends HttpServlet {
             Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GlobalException ex) {
+            Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoDataException ex) {
+            Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -149,6 +158,10 @@ public class controllerUser extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
+            Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GlobalException ex) {
+            Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoDataException ex) {
             Logger.getLogger(controllerUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

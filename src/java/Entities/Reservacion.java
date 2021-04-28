@@ -21,21 +21,35 @@ public class Reservacion implements Serializable {
     private Vuelo vuelo;
     private Perfil perfil;
     private ArrayList asientos;
+    private int cantAsientos;
     
     
     
-    public Reservacion(String id_reservacion,Vuelo vuelo,Perfil perfil){
+    
+    public Reservacion(String id_reservacion,Vuelo vuelo,Perfil perfil,int cantAsientos){
     this.id_reservacion= id_reservacion;
     this.vuelo= vuelo;
     this.perfil= perfil; 
     this.asientos= new ArrayList<Asiento>();
+    this.cantAsientos= cantAsientos;
+    }
+
+    public int getCantAsientos() {
+        return cantAsientos;
+    }
+
+    public void setCantAsientos(int cantAsientos) {
+        this.cantAsientos = cantAsientos;
     }
     
-    public Reservacion(Vuelo vuelo,Perfil perfil){
+    public Reservacion(Vuelo vuelo,Perfil perfil, int cantAsientos ){
     this.id_reservacion= "";
     this.vuelo= vuelo;
     this.perfil= perfil;
     this.asientos= new ArrayList<Asiento>();
+    this.cantAsientos= cantAsientos;
+
+    
     }
 
     public String getId_reservacion() {

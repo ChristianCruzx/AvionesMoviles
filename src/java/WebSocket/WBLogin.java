@@ -73,12 +73,16 @@ public class WBLogin {
      * @param session
      */
     @OnMessage
-    public void onMessage(String message, Session session,@PathParam("parameter1") String parameter1){
+    public void onMessage(String message, Session session,@PathParam("parameter1") String parameter1) throws IOException{
         if("login".equals(parameter1)){
             this.login(message, session);
          }       
          if("register".equals(parameter1)){
              this.register(message, session);
+
+         }
+          if("tikete".equals(parameter1)){
+             this.tikete(message, session);
 
          }
         
@@ -95,6 +99,20 @@ public class WBLogin {
         System.out.println("Session " +session.getId()+" has ended");
     }
     
+    
+    
+    
+    public void tikete(String Mensaje, Session session) throws IOException{
+                
+          try {
+            session.getBasicRemote().sendText("success");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        
+    
+    }
     public void login(String message, Session session){
     
     //Deserealizacion 
@@ -102,7 +120,8 @@ public class WBLogin {
         Usuario user = gson.fromJson(message, Usuario.class); 
         user.setRole(1);
        
-       System.out.println(user);
+        System.out.println(user);
+     
        
        // compobar en la base de datos
         // true ejcuttar esto

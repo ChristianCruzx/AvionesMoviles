@@ -13,26 +13,48 @@ import java.util.Date;
  */
 public class Tiquete  implements Serializable {
     
-    private Date fecha;
+    private String fecha;
     private Reservacion reservacion;
     private String id_tiquete;
+    private float precioTotal;
+    private String tipoPago;
 
-    public Tiquete(Date fecha, Reservacion reservacion) {
+    public Tiquete(String fecha, Reservacion reservacion, Integer pt, String tp) {
         this.fecha = fecha;
         this.reservacion = reservacion;
         this.id_tiquete="";
+        this.precioTotal=pt;
+        this.tipoPago= tp;
     }
-     public Tiquete(Date fecha, Reservacion reservacion, String id_tiquete) {
+     public Tiquete(String fecha, Reservacion reservacion, String id_tiquete, Integer pt, String tp) {
         this.fecha = fecha;
         this.reservacion = reservacion;
         this.id_tiquete= id_tiquete;
+         this.precioTotal=pt;
+        this.tipoPago= tp;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public float getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(float precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -50,6 +72,11 @@ public class Tiquete  implements Serializable {
 
     public void setId_tiquete(String id_tiquete) {
         this.id_tiquete = id_tiquete;
+    }
+
+    @Override
+    public String toString() {
+        return "Tiquete{" + "fecha=" + fecha + ", reservacion=" + reservacion + ", id_tiquete=" + id_tiquete + ", precioTotal=" + precioTotal + ", tipoPago=" + tipoPago + '}';
     }
     
    

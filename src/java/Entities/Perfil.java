@@ -16,16 +16,16 @@ import java.util.Date;
  */
 public class Perfil implements Serializable {
     
-    private String id_perfil;
+   
     private String nombre;
     private String Apellido;
     private String correo;
     private String direccion;
     private String Telefono;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
-    public Perfil(String id_perfil, String nombre, String Apellido, String correo, String direccion, String Telefono, Date fechaNacimiento) {
-        this.id_perfil = id_perfil;
+    public Perfil( String nombre, String Apellido, String correo, String direccion, String Telefono, String fechaNacimiento) {
+       
         this.nombre = nombre;
         this.Apellido = Apellido;
         this.correo = correo;
@@ -35,15 +35,7 @@ public class Perfil implements Serializable {
     }
 
      //para guardar en base sin id
-     public Perfil( String nombre, String Apellido, String correo, String direccion, String Telefono, Date fechaNacimiento) {
-        this.id_perfil = "";
-        this.nombre = nombre;
-        this.Apellido = Apellido;
-        this.correo = correo;
-        this.direccion = direccion;
-        this.Telefono = Telefono;
-        this.fechaNacimiento = fechaNacimiento;
-    }
+    
 
 
    
@@ -88,13 +80,19 @@ public class Perfil implements Serializable {
         this.Telefono = Telefono;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    @Override
+    public String toString() {
+        return "Perfil{" +  ", nombre=" + nombre + ", Apellido=" + Apellido + ", correo=" + correo + ", direccion=" + direccion + ", Telefono=" + Telefono + ", fechaNacimiento=" + fechaNacimiento + '}';
+    }
+    
     
     
     

@@ -87,7 +87,7 @@ public class ServiceTemplate<T, K> extends Service {
     public void insertar_objeto(final T objeto) throws GlobalException, NoDataException {
         try {
             Connect();
-            cstmt = crtCallableStmnt(connection, "INSERT", objectType, objeto);
+            cstmt = crtCallableStmnt(connection, "call prc_insert_Perfil('%1$s', '%2$s', '%3$s', '%4$s', '%5$s', '%6$s)", objectType, objeto);
             boolean failedExecution = cstmt.execute();
             if (failedExecution) {
                 throw new NoDataException("No se realizo la Insercion");

@@ -6,8 +6,7 @@
 package controllers;
 
 import Entities.Vuelo;
-import Models.ModelT;
-
+import Models.Model;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Chris
  */
-@WebServlet(name = "controllerVuelos", urlPatterns = {"/controllerVuelos", "/buscarVuelos"})
-public class controllerVuelos extends HttpServlet {
+@WebServlet(name = "controllerReservacion", urlPatterns = {"/controllerReservacion", "/newReservation", "/redirectNewReservationJSP"})
+public class controllerReservacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,12 +34,19 @@ public class controllerVuelos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    if (request.getServletPath().equals("/buscarVuelos")) {
+       
+       if (request.getServletPath().equals("/newReservation")) {
 
-            System.out.println("servlet Register");
-            this.BuscarVuelos(request, response);
+            System.out.println("servlet newReservation");
+            this.newReservation(request, response);
+        }
+       
+        if (request.getServletPath().equals("/redirectNewReservationJSP")) {
+            System.out.println("servlet newReservation");
+            this.redirectNewReservationJSP(request, response);
 
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,15 +87,46 @@ public class controllerVuelos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    
+    private void redirectNewReservationJSP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+     
+        String idVuelo= request.getParameter("idVuelo");
+        Vuelo v= this.Filter(Models.ModelT.instance().getVuelosList(), idVuelo);
+        request.setAttribute("VueloReserva", v);
+        
+        
+        
+        
+    request.getRequestDispatcher("/Presentation1/Cliente/nuevaReservacion.jsp").forward(request, response);
+    }
 
-    private void BuscarVuelos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-              ArrayList<Vuelo> listaVuelos = Models.ModelT.instance().getVuelosList();
-             request.getSession(true).setAttribute("listaVuelos", listaVuelos);
-              ArrayList<Vuelo> listaVuelos2= (ArrayList<Vuelo>) request.getSession(true).getAttribute("listaVuelos");
-
-                request.getRequestDispatcher("/Presentation1/Cliente/BuscarVuelos.jsp").forward(request, response);
-
-
+    
+    
+   public Vuelo Filter(ArrayList<Vuelo> list, String id){
+       
+       Vuelo vuelo = null;
+       for(Vuelo p: list){
+       if( p.getId_vuelo().equals(id)){
+       vuelo=p;
+       }
+       
+       
+       }
+   return vuelo;
+       
+   }
+    
+    private void newReservation(HttpServletRequest request, HttpServletResponse response) {
+        
+        Vuelo Vuelo= (Vuelo) request.getAttribute("VueloReserva");
+        
+        //obtener de la base segun el correo de usuario
+        String Perfil;
+        
+//        String cantAsientos= request.getParameter();
+        
+         //To change body of generated methods, choose Tools | Templates.
     }
 
 }
