@@ -12,8 +12,8 @@ Author     : Chris
 <html>      
           
             
-            <%@include file="/Presentation1/PopUpRegister.jsp"%>
-            <%@include file="/Presentation1/PopUpLogin.jsp"%>
+            <%@include file="/Presentation1/Cliente/PopUpRegister.jsp"%>
+            <%@include file="/Presentation1/Cliente/PopUpLogin.jsp"%>
 
     <%  Usuario usuario =  (Usuario)session.getAttribute("User");%>
 
@@ -53,7 +53,7 @@ Author     : Chris
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="Presentation/CajeroPrincipal.jsp">Mi Perfil</a>
                         
-                        <a class="dropdown-item" href="Presentation/CajeroPrincipal.jsp">Mis Reservaciones</a>
+                        <a class="dropdown-item" href="/Presentation1/Cliente/MisReservaciones.jsp">Mis Reservaciones</a>
                         <a class="dropdown-item" href="Presentation1/Login.jsp">Logout</a>
     
                    
